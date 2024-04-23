@@ -1,0 +1,136 @@
+---
+title: "R Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("tokenizers")
+#install.packages('arules')
+#install.packages('tidyverse')
+#install.packages('knitr')
+```
+
+
+```{r}
+#Note: The following code is specific from user to user
+
+library(arules)
+library(tidyverse)
+library(arules)
+library(stringr)
+#install.packages('arulesViz')
+library(arulesViz)
+
+setwd("C:\\Users\\wyett\\OneDrive\\Documents\\INFO5871\\") #to set the new working Directory
+data <- read.csv('resourceFiles\\basketData.csv', header = FALSE, sep = ',')
+
+#head(data)
+
+```
+```{r}
+transtotal <- arules::read.transactions("C:\\Users\\wyett\\OneDrive\\Documents\\INFO5871\\resourceFiles\\basketData.csv",
+                  rm.duplicates = TRUE, 
+                  format = "basket",  ##if you use "single" also use cols=c(1,2)
+                  sep=",",  ## csv file
+                  cols=NULL) ## The dataset has no row numbers
+
+print(typeof(transtotal))
+
+```
+
+```{r}
+
+rules = arules::apriori(transtotal, parameter = list(support = 0.28,confidence = 0.1), maxlen=5)
+print(length(rules))
+rules <- subset(rules, subset = arules::size(arules::lhs(rules)) != 0)
+#print(arules::inspect(rules))
+top.conf <- sort(rules, decreasing = TRUE, na.last = NA, by = "lift")
+inspect(head(top.conf, 15))
+```
+
+```{r}
+plot(rules, method="graph")
+
+```
+
+Left and right side control:
+```{r}
+rules = arules::apriori(transtotal, parameter = list(support = 0.3,confidence = 0.6), maxlen=2,appearance = list(lhs = c("time"), default="rhs"))
+print(length(rules))
+rules <- subset(rules, subset = arules::size(arules::lhs(rules)) != 0)
+print(arules::inspect(rules))
+
+```
+
+```{r}
+rules = arules::apriori(transtotal, parameter = list(support = 0.3,confidence = 0.6), maxlen=5,appearance = list(rhs = c("energy"), default="lhs"))
+print(length(rules))
+rules <- subset(rules, subset = arules::size(arules::lhs(rules)) != 0)
+#print(arules::inspect(rules))
+
+top.support <- sort(rules, decreasing = TRUE, na.last = NA, by = "support")
+inspect(head(top.support, 10))
+```
+
+```{r}
+plot(rules, method="graph")
+```
+
+
+
+```{r}
+## Hierarchical clustering 
+
+# ----
+library(dplyr)       # for data manipulation
+library(ggplot2)     # for data visualization
+
+# ---
+#install.packages("cluster")
+library(cluster)     # for general clustering algorithms
+#install.packages('factoextra')
+library(factoextra)  # for visualizing cluster results
+setwd("C:\\Users\\wyett\\OneDrive\\Documents\\INFO5871\\") #to set the new working Directory
+print(getwd())
+filepath <- 'resourceFiles\\tfidfData.csv'
+textData <- read.csv(filepath)
+textVectors <- textData[,c(-1,-2,-3)]
+```
+```{r}
+
+# Dissimilarity matrix with Euclidean
+## dist in R
+##  "euclidean", "maximum", "manhattan", 
+## "canberra", "binary" or "minkowski" with p
+(dE <- dist(textVectors, method = "euclidean"))
+(dM <- dist(textVectors, method = "manhattan"))
+(dMp2 <- dist(textVectors, method = "minkowski", p=2))
+
+# Hierarchical clustering using Complete Linkage
+(hc_C <- hclust(dM, method = "complete" ))
+plot(hc_C)
+hc_D <- hclust(dE, method = "ward.D" )
+plot(hc_D)
+hc_D2 <- hclust(dMp2, method = "ward.D2" )
+plot(hc_D2)
+```
+
+```{r}
+My_m = t(as.matrix(textVectors))
+(My_cosine_dist = 1-crossprod(My_m) /(sqrt(colSums(My_m^2)%*%t(colSums(My_m^2)))))
+# create dist object
+My_cosine_dist <- as.dist(My_cosine_dist) ## Important
+hclust_textClusters <- hclust(My_cosine_dist, method="ward.D")
+plot(hclust_textClusters)
+plot(hclust_textClusters, cex=.7, hang=-30,main = "Cosine Sim")
+output = rect.hclust(hclust_textClusters, k=3)
+l1 = paste(unlist(output[1]),collapse=",")
+l2 = paste(unlist(output[2]),collapse=",")
+l3 = paste(unlist(output[3]),collapse=",")
+list = c(l1,l2,l3)
+lapply(list, cat, "\n", file="hclusters.txt", append=TRUE)
+```

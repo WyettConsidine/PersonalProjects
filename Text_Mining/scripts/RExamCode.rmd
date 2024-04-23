@@ -1,0 +1,84 @@
+---
+title: "R Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("tokenizers")
+#install.packages('arules')
+#install.packages('tidyverse')
+#install.packages('knitr')
+```
+
+
+```{r}
+#Note: The following code is specific from user to user
+
+library(arules)
+library(tidyverse)
+library(arules)
+library(stringr)
+#install.packages('arulesViz')
+library(arulesViz)
+
+setwd("C:\\Users\\wyett\\OneDrive\\Documents\\INFO5871\\") #to set the new working Directory
+data <- read.csv('resourceFiles\\ExamCorpuses\\negRevsBasket.csv', header = FALSE, sep = ',')
+
+#head(data)
+
+```
+```{r}
+
+####Negative Reviews:::
+transtotal <- arules::read.transactions('C:\\Users\\wyett\\OneDrive\\Documents\\INFO5871\\resourceFiles\\ExamCorpuses\\negRevsBasket.csv',
+                  rm.duplicates = TRUE, 
+                  format = "basket",  ##if you use "single" also use cols=c(1,2)
+                  sep=",",  ## csv file
+                  cols=NULL) ## The dataset has no row numbers
+
+print(typeof(transtotal))
+
+```
+
+```{r}
+rules = arules::apriori(transtotal, parameter = list(support = 0.2,confidence = 0.3), maxlen=5)
+print(length(rules))
+rules <- subset(rules, subset = arules::size(arules::lhs(rules)) != 0)
+#print(arules::inspect(rules))
+top.conf <- sort(rules, decreasing = TRUE, na.last = NA, by = "lift")
+inspect(head(top.conf, 15))
+```
+
+```{r}
+rules = arules::apriori(transtotal, parameter = list(support = 0.1,confidence = 0.1), maxlen=3,appearance = list(lhs = c("issue"), default="rhs"))
+print(length(rules))
+rules <- subset(rules, subset = arules::size(arules::lhs(rules)) != 0)
+print(arules::inspect(rules))
+```
+
+
+
+```{r}
+#Postive Reviews
+transtotal <- arules::read.transactions('C:\\Users\\wyett\\OneDrive\\Documents\\INFO5871\\resourceFiles\\ExamCorpuses\\posRevsBasket.csv',
+                  rm.duplicates = TRUE, 
+                  format = "basket",  ##if you use "single" also use cols=c(1,2)
+                  sep=",",  ## csv file
+                  cols=NULL) ## The dataset has no row numbers
+
+print(typeof(transtotal))
+
+```
+
+```{r}
+rules = arules::apriori(transtotal, parameter = list(support = 0.3,confidence = 0.3), maxlen=5)
+print(length(rules))
+rules <- subset(rules, subset = arules::size(arules::lhs(rules)) != 0)
+#print(arules::inspect(rules))
+top.conf <- sort(rules, decreasing = TRUE, na.last = NA, by = "lift")
+inspect(head(top.conf, 15))
+```
