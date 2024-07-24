@@ -1,20 +1,28 @@
 CREATE TABLE State_dim (
     state_id VARCHAR NOT NULL PRIMARY KEY,
-    name VARCHAR,
+    s_name VARCHAR
 );
 
 CREATE TABLE County_dim (
     county_id VARCHAR NOT NULL PRIMARY KEY,
-    name VARCHAR,
+    c_name VARCHAR
+);
+
+CREATE TABLE TractRecords_fct (
+    tract_id VARCHAR NOT NULL PRIMARY KEY,
+    state_id VARCHAR NOT NULL REFERENCES State_dim(state_id),
+    county_id VARCHAR NOT NULL REFERENCES County_dim(county_id),
+    land_area float,
+    water_area float
 );
 
 CREATE TABLE GovRegulation_dim (
     tract_id VARCHAR NOT NULL REFERENCES TractRecords_fct(tract_id),
     eng_comm_overlap float,
-    num_brownfields TINYINT,
+    num_brownfields int,
     low_inc_overlap float,
     low_inc_tribal_overlap float,
-    num_aff_housing TINYINT,
+    num_aff_housing int,
     low_inc_add_sel_overlap float,
     justice_40_overlap float
 );
@@ -26,7 +34,7 @@ CREATE TABLE County_Mean_NPV_Third_dim (
 
 CREATE TABLE Commercial_Econ_dim (
     county_id VARCHAR NOT NULL REFERENCES County_Dim(county_id),
-    npv_id VARCHAR NOT NULL REFERENCES Country_Mean_NPV_Third_Dim(npv_id),
+    npv_id VARCHAR NOT NULL REFERENCES County_Mean_NPV_Third_Dim(npv_id),
     commercial_npv_national float,
     commercial_npv_state float,
     commercial_npv_avg float,
@@ -36,7 +44,7 @@ CREATE TABLE Commercial_Econ_dim (
 
 CREATE TABLE Residential_Econ_dim (
     county_id VARCHAR NOT NULL REFERENCES County_Dim(county_id),
-    npv_id VARCHAR NOT NULL REFERENCES Country_Mean_NPV_Third_Dim(npv_id),
+    npv_id VARCHAR NOT NULL REFERENCES County_Mean_NPV_Third_Dim(npv_id),
     residential_npv_national float,
     residential_npv_state float,
     residential_npv_avg float,
@@ -77,14 +85,6 @@ CREATE TABLE Gov_Buildings_Attr_dim (
     num_edu_higher_build int,
     edu_higher_kwh_ca float,
     edu_higher_kwh_pot float
-);
-
-CREATE TABLE TractRecords_fct (
-    tract_id VARCHAR NOT NULL PRIMARY KEY,
-    state_id VARCHAR NOT NULL REFERENCES State_dim(state_id),
-    county_id VARCHAR NOT NULL REFERENCES County_dim(county_id),
-    land_area float,
-    water_area float
 );
 
 
