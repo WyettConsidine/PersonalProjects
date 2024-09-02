@@ -14,8 +14,8 @@ services:
 
   etl:
     container_name: etl_container
-    image: sol_adoption:1.0
-    command: STEADy_200_sample.csv
+    image: solar_adoption:latest
+    command: STEADy_200_sample_1.csv
     depends_on:
      - db
     

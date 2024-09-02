@@ -2,13 +2,20 @@ import pandas as pd
 import numpy as np
 import argparse 
 from sqlalchemy import create_engine, text
+from sqlalchemy.dialects.postgresql import insert
+from pathlib import Path
+import os
 
 
-def extract_data(source):
-    df = pd.read_csv(source, delimiter='	', on_bad_lines='skip', index_col= 0)
-    return df  
+# def extract_data(source):
+#     df = pd.read_csv(source, delimiter='	', on_bad_lines='skip', index_col= 0)
+#     return df  
 
-def transform_data(new_batch):
+def transform_data(source_csv, target_dir):
+    new_batch = pd.read_csv(source_csv, delimiter=',', on_bad_lines='skip', index_col= 0)
+       
+
+    print(new_batch.head(3))
     clean_batch = new_batch.copy()
     
     #drop unused columns. Either cacluated or irrelevant
@@ -27,9 +34,6 @@ def transform_data(new_batch):
        'EDU1_kWh_p':'edu_grade_kwh_pot', 'EDU2_count':'num_edu_higher_build', 'EDU2_kW_ca':'edu_higher_kwh_ca', 'EDU2_kWh_p':'edu_higher_kwh_pot'}, inplace = True)
     print("Renamed")
     #### NOTE: Deal with con_npv_map and res_npv_map
-
-    clean_batch['tract_id'] = ['tid' + str(tid) for tid in clean_batch['tract_id']]
-
 
     # tabulize: a function that takes in a series, and outputs a tabular format
     #The func takes the input series, ser, and identifies all unique values, assigning them an 
@@ -84,38 +88,45 @@ def transform_data(new_batch):
     dfs = (TractRecords_fct,State_dim,County_dim,County_Mean_NPV_Third_dim,GovRegulation_dim,Commercial_Econ_dim,
                Residential_Econ_dim,Demographics_dim,Household_Attr_dim,Gov_Buildings_Attr_dim)
 
-    for df in dfs:
-        print(df.head())
+    # for df in dfs:
+    #     print(df.head())
 
-    return dfs
+    Path(target_dir).mkdir(parents=True, exist_ok=True)
+
+    TractRecords_fct.to_parquet(target_dir+'/TractRecords_fct.parquet')
+    State_dim.to_parquet(target_dir+'/State_dim.parquet')
+    County_dim.to_parquet(target_dir+'/Conuty_dim.parquet')
+    County_Mean_NPV_Third_dim.to_parquet(target_dir+'/County_Mean_NPV_Third_dim.parquet')
+    GovRegulation_dim.to_parquet(target_dir+'/GovRegulation_dim.parquet')
+    Commercial_Econ_dim.to_parquet(target_dir+'/Commercial_Econ_dim.parquet')
+    Residential_Econ_dim.to_parquet(target_dir+'/Residential_Econ_dim.parquet')
+    Demographics_dim.to_parquet(target_dir+'/Demographics_dim.parquet')
+    Household_Attr_dim.to_parquet(target_dir+'/Household_Attr_dim.parquet')
+    Gov_Buildings_Attr_dim.to_parquet(target_dir+'/Gov_Buildings_Attr_dim.parquet')
+    
+    #return dfs
 
     
 
-def load_data(dfTuple):
+def load_data(table_file, table_name, key):
     db_url = 'postgresql+psycopg2://wyett:password@db:5432/solar_adoption' # connect to psql server
     conn = create_engine(db_url)
-    tableNames = ['TractRecords_fct', 'State_dim', 'County_dim', 'GovRegulation_dim', 'County_Mean_NPV_Third_dim',
-              'Commercial_Econ_dim', 'Residential_Econ_dim', 'Demographics_dim', 'Household_Attr_dim', 
-              'Gov_Buildings_Attr_dim'] 
-    #This will be a for loop that adds data to each table. 
-    #Only adding to animal dimension table for debugging
-    for i in range(0,len(dfTuple)):
-        #print(data[0].head())
-        dfTuple[i].to_sql(tableNames[i], conn, if_exists='append', index=False)
+    
+    def insert_on_conflict_nothing(table, conn, keys, data_iter):
+        # "key" is the primary key in "conflict_table"
+        data = [dict(zip(keys, row)) for row in data_iter]
+        stmt = insert(table.table).values(data).on_conflict_do_nothing(index_elements=[key])
+        result = conn.execute(stmt)
+        return result.rowcount
+    
+    pd.read_parquet(table_file).to_sql(table_name, conn, if_exists='append', index=False, method=insert_on_conflict_nothing)
+    print(table_name+" loaded.")
 
+def load_fact_data(table_file, table_name): #Accept tuple of df's
+    db_url = os.environ['DB_URL'] # connect to psql server
+    conn = create_engine(db_url)
 
-if __name__ == '__main__':
-    print("Initializing ETL pipeline")
-    parser = argparse.ArgumentParser()
-    parser.add_argument('source', help='source csv')
-    args = parser.parse_args()
-    df = extract_data(args.source)
-    print(df.columns)
-    print("Data Extracted")
-    tableDFs = transform_data(df)
-    print("Tables Created: " ,len(tableDFs))
-    load_data(tableDFs)
-    print("Data Loaded")
-
+    pd.read_parquet(table_file).to_sql(table_name, conn, if_exists='replace', index=False)
+    print(table_name+" loaded.")
 
 
