@@ -1,8 +1,8 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow.operators.ptyhon import PythonOperator
+from airflow.operators.python import PythonOperator
 
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 import os
 
 from etl_scripts.airflow_pipeline import transform_data, load_data, load_fact_data
@@ -11,23 +11,27 @@ from etl_scripts.airflow_pipeline import transform_data, load_data, load_fact_da
 #### full data : https://data.nrel.gov/system/files/238/1716529424-STEADy_May2024_5.csv
 SOURCE_URL = "https://data.nrel.gov/system/files/238/1716529424-STEADy_May2024_5.csv"
 AIRFLOW_HOME = os.environ.get('AIRFLOW_HOME', '/opt/airflow')
-CSV_TARGET_DIR = AIRFLOW_HOME + '/data/{{ Sds }}/downloads'
-CSV_TARGET_FILE = CSV_TARGET_DIR+'/outcomes_{{ds}}.csv'
+CSV_TARGET_DIR = AIRFLOW_HOME + '/data/downloads'
+CSV_TARGET_FILE = CSV_TARGET_DIR+'/CurrentDataBatch.csv'
 
-PQ_TARGET_DIR = AIRFLOW_HOME + '/data/{{ ds }}/processed'
+CSV_SOURCE_DIR = AIRFLOW_HOME + '/data/raw/'
+
+PQ_TARGET_DIR = AIRFLOW_HOME + '/data/processed'
 
 with DAG(
     dag_id = "solar_adoption_dag",
-    start_date = date.today(),
+    start_date = datetime(2024,9,2),
     schedule_interval = '@daily'
 ) as dag:
     
     
     extract = BashOperator(
         task_id="extract",
-        bash_command = ...     ##### Have the data stored in a volume. get the next n lines from the data. 
+        bash_command = f"cd {CSV_SOURCE_DIR}; mv -v $files {CSV_TARGET_FILE}; cd {CSV_TARGET_DIR}; echo *" 
+                                #### Goal: Emulate batch processing:
+                               ##### Have the data stored in a volume. get the next n lines from the data. 
                                ##### for now, have 3 samples of 200, and over 3 days, (retrospectively) load each into the database. 
-                               ##### the bash command will access the csv samples
+                               ##### the bash command will access the csv samples stored in Airflow memory on compose
     )
 
     transform = PythonOperator(
