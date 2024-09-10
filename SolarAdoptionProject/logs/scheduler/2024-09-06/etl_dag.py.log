@@ -1,0 +1,102 @@
+[2024-09-06T16:11:49.631+0000] {processor.py:161} INFO - Started process (PID=73) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:11:49.633+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:11:49.645+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:49.643+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:11:58.261+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:11:59.475+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:59.473+0000] {override.py:1829} INFO - Created Permission View: can delete on DAG:solar_adoption_dag
+[2024-09-06T16:11:59.501+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:59.501+0000] {override.py:1829} INFO - Created Permission View: can read on DAG:solar_adoption_dag
+[2024-09-06T16:11:59.517+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:59.517+0000] {override.py:1829} INFO - Created Permission View: can edit on DAG:solar_adoption_dag
+[2024-09-06T16:11:59.519+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:59.518+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:11:59.548+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:59.548+0000] {dag.py:3118} INFO - Creating ORM DAG for solar_adoption_dag
+[2024-09-06T16:11:59.570+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:11:59.569+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-03 00:00:00+00:00, run_after=2024-09-04 00:00:00+00:00
+[2024-09-06T16:11:59.616+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 9.999 seconds
+[2024-09-06T16:12:30.074+0000] {processor.py:161} INFO - Started process (PID=82) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:12:30.079+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:12:30.084+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:12:30.083+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:12:31.567+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:12:32.086+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:12:32.085+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:12:32.155+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:12:32.154+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-03 00:00:00+00:00, run_after=2024-09-04 00:00:00+00:00
+[2024-09-06T16:12:32.235+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 2.184 seconds
+[2024-09-06T16:13:02.498+0000] {processor.py:161} INFO - Started process (PID=94) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:02.500+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:13:02.506+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:02.506+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:03.530+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:03.897+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:03.896+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:13:03.920+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:03.920+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:13:03.941+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 1.464 seconds
+[2024-09-06T16:13:34.190+0000] {processor.py:161} INFO - Started process (PID=108) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:34.191+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:13:34.193+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:34.192+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:34.663+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:34.691+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:34.691+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:13:34.710+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:34.710+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:13:34.737+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.553 seconds
+[2024-09-06T16:13:57.990+0000] {processor.py:161} INFO - Started process (PID=116) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:57.991+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:13:57.993+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:57.993+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:58.493+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:13:58.581+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:58.581+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:13:58.601+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:13:58.601+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:13:58.636+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.651 seconds
+[2024-09-06T16:14:28.898+0000] {processor.py:161} INFO - Started process (PID=124) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:14:28.899+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:14:28.900+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:14:28.900+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:14:29.320+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:14:29.346+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:14:29.346+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:14:29.365+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:14:29.364+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:14:29.383+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.490 seconds
+[2024-09-06T16:14:59.649+0000] {processor.py:161} INFO - Started process (PID=132) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:14:59.650+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:14:59.652+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:14:59.652+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:15:00.143+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:15:00.186+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:15:00.186+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:15:00.335+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:15:00.334+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:15:00.355+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.712 seconds
+[2024-09-06T16:15:30.441+0000] {processor.py:161} INFO - Started process (PID=140) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:15:30.442+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:15:30.444+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:15:30.444+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:15:30.779+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:15:30.932+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:15:30.932+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:15:30.949+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:15:30.949+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:15:30.977+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.541 seconds
+[2024-09-06T16:16:01.245+0000] {processor.py:161} INFO - Started process (PID=148) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:16:01.246+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:16:01.248+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:16:01.248+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:16:01.545+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:16:01.693+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:16:01.693+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:16:01.713+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:16:01.713+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:16:01.733+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.493 seconds
+[2024-09-06T16:16:32.003+0000] {processor.py:161} INFO - Started process (PID=156) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:16:32.005+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:16:32.008+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:16:32.007+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:16:32.934+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:16:32.981+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:16:32.980+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:16:33.013+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:16:33.012+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:16:33.038+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 1.044 seconds
+[2024-09-06T16:17:03.336+0000] {processor.py:161} INFO - Started process (PID=164) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:17:03.337+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:17:03.339+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:17:03.339+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:17:03.942+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:17:03.974+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:17:03.974+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:17:03.994+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:17:03.994+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:17:04.017+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.687 seconds
+[2024-09-06T16:17:34.267+0000] {processor.py:161} INFO - Started process (PID=172) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:17:34.268+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:17:34.270+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:17:34.270+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:17:34.681+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:17:34.705+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:17:34.705+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:17:34.723+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:17:34.723+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:17:34.750+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.488 seconds
+[2024-09-06T16:18:04.811+0000] {processor.py:161} INFO - Started process (PID=180) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:18:04.812+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:18:04.814+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:18:04.814+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:18:05.103+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:18:05.132+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:18:05.132+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:18:05.273+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:18:05.273+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:18:05.305+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.499 seconds
+[2024-09-06T16:18:35.596+0000] {processor.py:161} INFO - Started process (PID=188) to work on /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:18:35.597+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_dag.py for tasks to queue
+[2024-09-06T16:18:35.598+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:18:35.598+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:18:35.983+0000] {processor.py:840} INFO - DAG(s) 'solar_adoption_dag' retrieved from /opt/airflow/dags/etl_dag.py
+[2024-09-06T16:18:36.126+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:18:36.125+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-09-06T16:18:36.146+0000] {logging_mixin.py:188} INFO - [2024-09-06T16:18:36.146+0000] {dag.py:3954} INFO - Setting next_dagrun for solar_adoption_dag to 2024-09-06 00:00:00+00:00, run_after=2024-09-07 00:00:00+00:00
+[2024-09-06T16:18:36.174+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/etl_dag.py took 0.583 seconds

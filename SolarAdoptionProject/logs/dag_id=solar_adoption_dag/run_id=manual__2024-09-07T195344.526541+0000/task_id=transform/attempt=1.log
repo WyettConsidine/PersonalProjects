@@ -1,0 +1,39 @@
+[2024-09-07T19:53:51.118+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-09-07T19:53:51.183+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solar_adoption_dag.transform manual__2024-09-07T19:53:44.526541+00:00 [queued]>
+[2024-09-07T19:53:51.367+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solar_adoption_dag.transform manual__2024-09-07T19:53:44.526541+00:00 [queued]>
+[2024-09-07T19:53:51.368+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-09-07T19:53:51.383+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transform> on 2024-09-07 19:53:44.526541+00:00
+[2024-09-07T19:53:51.390+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=88) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-07T19:53:51.392+0000] {standard_task_runner.py:63} INFO - Started process 93 to run task
+[2024-09-07T19:53:51.393+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'solar_adoption_dag', 'transform', 'manual__2024-09-07T19:53:44.526541+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpwd5ts_x5']
+[2024-09-07T19:53:51.397+0000] {standard_task_runner.py:91} INFO - Job 6: Subtask transform
+[2024-09-07T19:53:51.447+0000] {task_command.py:426} INFO - Running <TaskInstance: solar_adoption_dag.transform manual__2024-09-07T19:53:44.526541+00:00 [running]> on host d49a8c6f87aa
+[2024-09-07T19:53:51.543+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='solar_adoption_dag' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2024-09-07T19:53:44.526541+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-09-07T19:53:44.526541+00:00'
+[2024-09-07T19:53:51.544+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-09-07T19:53:51.625+0000] {logging_mixin.py:188} INFO -             GEOID     StateName  ... EDU2_kW_ca EDU2_kWh_p
+403  9.110416e+09   Connecticut  ...        0.0        0.0
+404  9.110462e+09   Connecticut  ...        0.0        0.0
+405  9.140406e+09   Connecticut  ...        0.0        0.0
+
+[3 rows x 49 columns]
+[2024-09-07T19:53:51.627+0000] {logging_mixin.py:188} INFO - Renamed
+[2024-09-07T19:53:51.630+0000] {logging_mixin.py:188} INFO - Keys created
+[2024-09-07T19:53:51.632+0000] {logging_mixin.py:188} INFO - keys appended
+[2024-09-07T19:53:51.638+0000] {warnings.py:112} WARNING - /opt/***/dags/etl_scripts/***_pipeline.py:66: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  TractRecords_fct['state_id'] = pd.Series(data=ids,index=ind)
+
+[2024-09-07T19:53:51.643+0000] {logging_mixin.py:188} INFO - break mrk1
+[2024-09-07T19:53:51.644+0000] {logging_mixin.py:188} INFO - /opt/***/data/processed
+[2024-09-07T19:53:51.646+0000] {logging_mixin.py:188} INFO - break mrk2
+[2024-09-07T19:53:51.915+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-09-07T19:53:51.915+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-09-07T19:53:51.931+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=solar_adoption_dag, task_id=transform, run_id=manual__2024-09-07T19:53:44.526541+00:00, execution_date=20240907T195344, start_date=20240907T195351, end_date=20240907T195351
+[2024-09-07T19:53:51.969+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-09-07T19:53:52.015+0000] {taskinstance.py:3503} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2024-09-07T19:53:52.019+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

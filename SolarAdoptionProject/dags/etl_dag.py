@@ -10,25 +10,23 @@ from etl_scripts.airflow_pipeline import transform_data, load_data, load_fact_da
 
 #### full data : https://data.nrel.gov/system/files/238/1716529424-STEADy_May2024_5.csv
 SOURCE_URL = "https://data.nrel.gov/system/files/238/1716529424-STEADy_May2024_5.csv"
-AIRFLOW_HOME = os.environ.get('AIRFLOW_HOME', '/opt/airflow')
-CSV_TARGET_DIR = AIRFLOW_HOME + '/data/downloads'
-CSV_TARGET_FILE = CSV_TARGET_DIR+'/CurrentDataBatch.csv'
-
-CSV_SOURCE_DIR = AIRFLOW_HOME + '/data/raw/'
+AIRFLOW_HOME = os.environ.get('AIRFLOW_HOME', 'opt/airflow')
+CSV_TARGET_DIR = AIRFLOW_HOME + '/data/raw/'
+CSV_TARGET_FILE = CSV_TARGET_DIR+'z_CurrentDataBatch.csv'
 
 PQ_TARGET_DIR = AIRFLOW_HOME + '/data/processed'
 
 with DAG(
     dag_id = "solar_adoption_dag",
-    start_date = datetime(2024,9,2),
+    start_date = datetime(2024,9,6),
     schedule_interval = '@daily'
 ) as dag:
     
     
     extract = BashOperator(
         task_id="extract",
-        bash_command = f"cd {CSV_SOURCE_DIR}; mv -v $files {CSV_TARGET_FILE}; cd {CSV_TARGET_DIR}; echo *" 
-                                #### Goal: Emulate batch processing:
+        bash_command = f"echo 'initiating extraction'; cd {CSV_TARGET_DIR}; files=(*); mv -v $files {CSV_TARGET_FILE}; echo *" 
+                               #### Goal: Emulate batch processing:
                                ##### Have the data stored in a volume. get the next n lines from the data. 
                                ##### for now, have 3 samples of 200, and over 3 days, (retrospectively) load each into the database. 
                                ##### the bash command will access the csv samples stored in Airflow memory on compose

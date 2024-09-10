@@ -60,7 +60,11 @@ def transform_data(source_csv, target_dir):
 
     ### Define the tables:
     TractRecords_fct = clean_batch[['tract_id', 'county_id', 'land_area', 'water_area']]
-    TractRecords_fct['state_id'] = clean_batch['s_name'].apply(lambda x: state_dict.get(x))
+    names = clean_batch['s_name'].values
+    ind = clean_batch['s_name'].keys()
+    ids = np.array([state_dict.get(x) for x in names])
+    TractRecords_fct['state_id'] = pd.Series(data=ids,index=ind)
+
 
     State_dim = pd.DataFrame(data={'state_id':state_dict.values(), 's_name':state_dict.keys()})
     County_dim = pd.DataFrame(data={'county_id':county_dict.values(), 'c_name':county_dict.keys()})
@@ -90,9 +94,10 @@ def transform_data(source_csv, target_dir):
 
     # for df in dfs:
     #     print(df.head())
-
+    print("break mrk1")
+    print(target_dir)
     Path(target_dir).mkdir(parents=True, exist_ok=True)
-
+    print("break mrk2")
     TractRecords_fct.to_parquet(target_dir+'/TractRecords_fct.parquet')
     State_dim.to_parquet(target_dir+'/State_dim.parquet')
     County_dim.to_parquet(target_dir+'/Conuty_dim.parquet')

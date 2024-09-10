@@ -1,0 +1,68 @@
+[2024-09-07T19:41:05.696+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-09-07T19:41:05.752+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solar_adoption_dag.transform manual__2024-09-07T19:41:01.389574+00:00 [queued]>
+[2024-09-07T19:41:05.975+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solar_adoption_dag.transform manual__2024-09-07T19:41:01.389574+00:00 [queued]>
+[2024-09-07T19:41:05.976+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-09-07T19:41:05.994+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transform> on 2024-09-07 19:41:01.389574+00:00
+[2024-09-07T19:41:06.001+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=558) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-07T19:41:06.004+0000] {standard_task_runner.py:63} INFO - Started process 560 to run task
+[2024-09-07T19:41:06.004+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'solar_adoption_dag', 'transform', 'manual__2024-09-07T19:41:01.389574+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmprbt5qw_y']
+[2024-09-07T19:41:06.007+0000] {standard_task_runner.py:91} INFO - Job 30: Subtask transform
+[2024-09-07T19:41:06.054+0000] {task_command.py:426} INFO - Running <TaskInstance: solar_adoption_dag.transform manual__2024-09-07T19:41:01.389574+00:00 [running]> on host a319a30e0358
+[2024-09-07T19:41:06.169+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='solar_adoption_dag' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2024-09-07T19:41:01.389574+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-09-07T19:41:01.389574+00:00'
+[2024-09-07T19:41:06.171+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-09-07T19:41:06.251+0000] {logging_mixin.py:188} INFO -             GEOID     StateName  ... EDU2_kW_ca EDU2_kWh_p
+403  9.110416e+09   Connecticut  ...        0.0        0.0
+404  9.110462e+09   Connecticut  ...        0.0        0.0
+405  9.140406e+09   Connecticut  ...        0.0        0.0
+
+[3 rows x 49 columns]
+[2024-09-07T19:41:06.253+0000] {logging_mixin.py:188} INFO - Renamed
+[2024-09-07T19:41:06.255+0000] {logging_mixin.py:188} INFO - Keys created
+[2024-09-07T19:41:06.257+0000] {logging_mixin.py:188} INFO - keys appended
+[2024-09-07T19:41:06.266+0000] {warnings.py:112} WARNING - /opt/***/dags/etl_scripts/***_pipeline.py:66: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  TractRecords_fct['state_id'] = pd.Series(data=ids,index=ind)
+
+[2024-09-07T19:41:06.272+0000] {logging_mixin.py:188} INFO - break mrk1
+[2024-09-07T19:41:06.273+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-09-07T19:41:06.274+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/2024-09-07/processed'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl_scripts/airflow_pipeline.py", line 98, in transform_data
+    Path(target_dir).mkdir(parents=True, exist_ok=True)
+  File "/usr/local/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/usr/local/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/data/2024-09-07'
+[2024-09-07T19:41:06.286+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=solar_adoption_dag, task_id=transform, run_id=manual__2024-09-07T19:41:01.389574+00:00, execution_date=20240907T194101, start_date=20240907T194105, end_date=20240907T194106
+[2024-09-07T19:41:06.301+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 30 for task transform ([Errno 13] Permission denied: '/opt/airflow/data/2024-09-07'; 560)
+[2024-09-07T19:41:06.339+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-09-07T19:41:06.368+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-09-07T19:41:06.373+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

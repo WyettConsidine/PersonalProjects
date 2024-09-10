@@ -1,0 +1,31 @@
+[2024-09-03T18:18:50.037+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-09-03T18:18:50.087+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: solar_adoption_dag.extract manual__2024-09-03T18:18:46.273339+00:00 [queued]>
+[2024-09-03T18:18:50.102+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: solar_adoption_dag.extract manual__2024-09-03T18:18:46.273339+00:00 [queued]>
+[2024-09-03T18:18:50.103+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-09-03T18:18:50.128+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): extract> on 2024-09-03 18:18:46.273339+00:00
+[2024-09-03T18:18:50.138+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=91) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-03T18:18:50.141+0000] {standard_task_runner.py:63} INFO - Started process 93 to run task
+[2024-09-03T18:18:50.143+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'solar_adoption_dag', 'extract', 'manual__2024-09-03T18:18:46.273339+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmponahpl0a']
+[2024-09-03T18:18:50.145+0000] {standard_task_runner.py:91} INFO - Job 3: Subtask extract
+[2024-09-03T18:18:50.196+0000] {task_command.py:426} INFO - Running <TaskInstance: solar_adoption_dag.extract manual__2024-09-03T18:18:46.273339+00:00 [running]> on host cd0632279a4b
+[2024-09-03T18:18:50.349+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='solar_adoption_dag' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2024-09-03T18:18:46.273339+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-09-03T18:18:46.273339+00:00'
+[2024-09-03T18:18:50.353+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-09-03T18:18:50.355+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-09-03T18:18:50.357+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', "echo 'initiating extraction'; cd /opt/***/data/raw/; pwd; mkdir -p /opt/***/data/downloads/; mv -v $files /opt/***/data/downloads/CurrentDataBatch.csv; cd /opt/***/data/downloads/; pwd; echo *"]
+[2024-09-03T18:18:50.376+0000] {subprocess.py:86} INFO - Output:
+[2024-09-03T18:18:50.379+0000] {subprocess.py:93} INFO - initiating extraction
+[2024-09-03T18:18:50.381+0000] {subprocess.py:93} INFO - /opt/***/data/raw
+[2024-09-03T18:18:50.385+0000] {subprocess.py:93} INFO - mkdir: cannot create directory ‘/opt/***/data/downloads/’: Permission denied
+[2024-09-03T18:18:50.389+0000] {subprocess.py:93} INFO - mv: missing destination file operand after '/opt/***/data/downloads/CurrentDataBatch.csv'
+[2024-09-03T18:18:50.391+0000] {subprocess.py:93} INFO - Try 'mv --help' for more information.
+[2024-09-03T18:18:50.392+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: cd: /opt/***/data/downloads/: No such file or directory
+[2024-09-03T18:18:50.393+0000] {subprocess.py:93} INFO - /opt/***/data/raw
+[2024-09-03T18:18:50.395+0000] {subprocess.py:93} INFO - STEADy_200_sample_1.csv STEADy_200_sample_2.csv STEADy_200_sample_3.csv
+[2024-09-03T18:18:50.396+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-09-03T18:18:50.398+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-09-03T18:18:50.437+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=solar_adoption_dag, task_id=extract, run_id=manual__2024-09-03T18:18:46.273339+00:00, execution_date=20240903T181846, start_date=20240903T181850, end_date=20240903T181850
+[2024-09-03T18:18:50.477+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-09-03T18:18:50.514+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-09-03T18:18:50.517+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

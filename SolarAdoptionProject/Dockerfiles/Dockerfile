@@ -4,7 +4,9 @@
 FROM pyalchemy:1.0
 
 WORKDIR /app
-COPY dags/etl_scripts/pipeline.py pipeline.py
-COPY data/raw/STEADy_200_sample_1.csv STEADy_200_sample_1.csv
+RUN pwd
+#COPY dags/etl_scripts/pipeline.py pipeline.py
+#COPY data/raw/STEADy_200_sample_1.csv STEADy_200_sample_1.csv
+RUN chmod 755 /app
 
-ENTRYPOINT [ "python", "pipeline.py"]
+#ENTRYPOINT [ "python", "pipeline.py", "STEADy_200_sample_1.csv"]
